@@ -1,0 +1,30 @@
+== Elegant Simple
+
+This message style is a working proof of concept, a custom scrollbar in Adium. 
+It is a prototype for the talented folks that create our wonderful message styles. 
+I hope that others will use it as a spring board for rapid development of a whole new breed of message styles with custom scrollbars.
+
+See /media folder for screen shots and video.
+
+== Features
+
+* Fade-in of messages
+* Auto smooth scrolling when new message is received
+* Custom styled scrollbar
+* Dynamic height scrollbar handle
+* Header and Footer objects of scrollbar handle
+* Auto-hiding and fading scrollbar (mouse in/out of window)
+* Mouse wheel support
+
+== Credits
+
+* Design taken from "Pretty Simple" Message Style by Piotrek Marciniak
+* Message-Append code taken from "ProtoScroll" Message Style by Eoban Binder
+* Sam Stephenson and contributors of Prototype
+* Ryan Johnson and contributors of LivePipe UI
+* Thomas Fuchs and contributors of scriptaculous
+
+== License
+
+Elegant Simple is licensed under the terms of the MIT License, 
+see the included MIT-LICENSE file.

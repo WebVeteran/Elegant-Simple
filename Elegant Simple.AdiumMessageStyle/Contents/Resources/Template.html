@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<base href="%@">
+	<script language="Javascript" src="lib/scriptaculous183.js"></script>
+	<script language="Javascript" src="lib/livepipe.js"></script>
+	<!-- scrollbar.js HAS BEEN MODIFIED FOR ADIUM/WEBKIT -->
+	<script language="Javascript" src="lib/scrollbar.js"></script>
+	<script language="Javascript">
+	
+	/* ===============================================================================
+	// ELEGANT SIMPLE 1.0
+	//
+	// Copyright (c) 2009 Jules Gravinese (http://www.webveteran.com/)
+	//
+	// Elegant Simple is freely distributable under the terms of an MIT-style license.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining
+	// a copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to
+	// permit persons to whom the Software is furnished to do so, subject to
+	// the following conditions:
+	//
+	// The above copyright notice and this permission notice shall be
+	// included in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+	// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+	// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+	// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	============================================================================== */
+	
+		var scrollbar;
+		Event.observe(window,'load', function(){
+			// GIVE A PAUSE THEN BUILD THE SCROLLER
+			setTimeout("scrollbar = new Control.ScrollBar('scrollbar_content','scrollbar_track');", 100);
+			// FOR THE PREVIEW
+			setTimeout("scrollBottom('hideScrollbar()');", 200);
+			
+			// AUTOHIDE SCROLLBAR
+			Event.observe(window, 'mouseover',function(e){ 
+				// ONLY IF WITHIN WINDOW
+				if (Event.pointerX(e) >= 0 && Event.pointerY(e) >= 0) {
+					showScrollbar();
+				}
+			});
+			Event.observe('body', 'mouseout',function(e){ 
+				// ONLY IF OUT OF WINDOW
+				if (Event.pointerX(e) < 0 || Event.pointerY(e) < 0) {
+					hideScrollbar();
+				}
+			});
+		});
+		
+		function showScrollbar() {
+			// CAN WE AND SHOULD WE?
+			if (scrollbar.enabled && $('scrollbar_track').style.right != '5px') {
+				new Effect.Morph('scrollbar_track', {style:'right:5px;', duration:.1});
+				new Effect.Opacity('scrollbar_track', {to:.35, duration:.2});
+			}
+		}
+		function hideScrollbar() {
+			// CAN WE AND SHOULD WE?
+			if (scrollbar.enabled && $('scrollbar_track').style.right != '-8px') {
+				new Effect.Morph('scrollbar_track', {style:'right:-8px;', duration:.5});
+				new Effect.Opacity('scrollbar_track', {to:0.1, duration:.4});
+			}
+		}
+		
+		var busy = 0;
+		var tempH = 0;
+		function reScroll() {		
+			
+			// SHOULD WE BE HERE?
+			if (!scrollbar.enabled && scrollbar.container.scrollHeight <= scrollbar.container.offsetHeight) {
+				return false;
+			}
+					
+			// FIRST MAKE SURE ITS NOT ALREADY BUSY SCROLLING
+			if (busy==0) {
+				busy = 1;
+				
+				// FIX FIRST SCROLLABLE MESSAGE NOT SCROLLING
+				if (!scrollbar.enabled && scrollbar.container.scrollHeight > scrollbar.container.offsetHeight) {
+					scrollbar.enable();
+				}
+				
+				// FIND OUT WHERE WE ARE SCROLLED (PRE RECALC)
+				tempH = scrollbar.container.scrollHeight;
+				
+				// GIVE A PAUSE THEN RECALC THE SCROLLER
+				setTimeout("scrollbar.recalculateLayout();",100);
+								
+				// ANOTHER PAUSE, THEN SCROLL TO BOTTOM
+				setTimeout("scrollBottom();", 200);
+			}
+		}
+		
+		function scrollBottom(doThis) {			
+			// FIX A BUG IN SCROLLING TO BOTTOM WHEN SCROLLBAR IS ALREADY AT THE BOTTOM
+			// TELL IT TO SCROLL BACKWARDS, TO WHERE THE CONTENT CURRENTLY IS (?!)
+			scrollbar.scrollBy(tempH-scrollbar.container.scrollHeight);
+			
+			// ANIMATED SCROLL
+			scrollbar.scrollTo('bottom',function(){
+				// ALL DONE, RESET THE BUSY FLAG
+				busy=0;
+				// EXTRA COMMANDS?
+				if (doThis) {
+					eval(doThis);
+				}
+			});
+		}
+		
+		//Appending new content to the message view
+		function appendMessage(html) {
+			//Remove any existing insertion point
+			var insert = document.getElementById("insert");
+			if(insert) insert.parentNode.removeChild(insert);
+			//Append the new message to the bottom of our chat block
+			var chat = document.getElementById("scrollbar_content");
+			var range = document.createRange();
+			range.selectNode(chat);
+			var documentFragment = range.createContextualFragment(html);
+			chat.appendChild(documentFragment);
+						
+			// FADE IN THE LAST MESSAGE BLOCK
+			var lastChildID = $('scrollbar_content').lastElementChild.identify();
+			new Effect.Opacity($(lastChildID), {to:.99, duration:1});
+			
+			// UPDATE THE SCROLLER
+			reScroll();
+		}
+
+		function appendNextMessage(html){
+			//Locate the insertion point
+			var insert = document.getElementById("insert");		
+			//make new node
+			range = document.createRange();
+			range.selectNode(insert.parentNode);
+			newNode = range.createContextualFragment(html);
+			//swap
+			insert.parentNode.replaceChild(newNode,insert);
+						
+			// UPDATE THE SCROLLER
+			reScroll();
+		}
+	</script>	
+	
+	<style id="mainStyle" type="text/css" media="screen,print">	@import url( "%@" ); </style>	
+	<style type="text/css">
+		#filler {
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background-color: black;
+			opacity: .35;
+			z-index: -1;
+			margin: 0px;
+			padding: 0px;
+			-webkit-border-radius: 0px;
+		}
+		
+		#scrollbar_container {
+			position: fixed;  
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+			width: 100%;
+			height: 100%
+			padding: 0px;
+			margin: 0px;
+		} 
+		 
+		#scrollbar_track {  
+			background: transparent;
+			opacity: .35;
+			width:6px;    
+			cursor:pointer;
+			position: fixed;  
+			top: 5px;
+			right: 5px;
+			bottom: 5px;
+			border: 1px solid black;
+		    margin: 0px;
+			padding: 0px;
+			z-index:2;
+			-webkit-border-radius: 4px;
+		} 
+				 
+		#scrollbar_handle {  
+			-webkit-border-radius: 4px;
+			background: black;
+			opacity: 1;
+			cursor:pointer;
+			width:6px;  
+		    margin: 0px;
+			padding: 0px;
+			z-index:3;
+			position: relative;
+		} 	 
+		
+		#handleTable TR TD DIV {  
+			background: #666666; 
+			-webkit-border-radius: 2px; 
+			width: 4px; 
+			height: 4px;
+			margin: 2px 1px;
+		} 
+		 
+		#scrollbar_content {  
+			overflow:hidden;
+			padding:0px 25px 0px 0;
+			z-index:1;
+			position: fixed;  
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+		    margin: 0px 20px 0px 5px;
+			padding: 0px 0px 5px;
+		} 		
+	</style>
+</head>
+<body style="==bodyBackground==" id="body">
+<div id="scrollbar_container">
+	<div id="scrollbar_track">
+		<div id="scrollbar_handle">
+			<table cellpadding="0" cellspacing="0" border="0" id="handleTable" style="height:100%;" height="100%">
+				<tr>
+					<td style="vertical-align:top;"><div></div></td>
+				</tr>
+				<tr>
+					<td style="vertical-align:bottom;"><div></div></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="scrollbar_content"></div>
+</div>
+<div id="filler"></div>
+</body>
+</html>
