@@ -5,7 +5,7 @@
 	<key>AllowTextColors</key>
 	<false/>
 	<key>CFBundleGetInfoString</key>
-	<string>1.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleIdentifier</key>
 	<string>elegantsimple.style</string>
 	<key>CFBundleName</key>

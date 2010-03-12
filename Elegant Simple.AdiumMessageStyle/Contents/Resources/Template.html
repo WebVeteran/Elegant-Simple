@@ -12,7 +12,7 @@
 	<script language="Javascript">
 	
 	/* ===============================================================================
-	// ELEGANT SIMPLE 1.0
+	// ELEGANT SIMPLE 1.0.1
 	//
 	// Copyright (c) 2009 Jules Gravinese (http://www.webveteran.com/)
 	//
@@ -61,17 +61,25 @@
 		});
 		
 		function showScrollbar() {
-			// CAN WE AND SHOULD WE?
-			if (scrollbar.enabled && $('scrollbar_track').style.right != '5px') {
-				new Effect.Morph('scrollbar_track', {style:'right:5px;', duration:.1});
-				new Effect.Opacity('scrollbar_track', {to:.35, duration:.2});
+			// CAN WE?
+			if (scrollbar.enabled) {
+				if (myOpac) {
+					myOpac.cancel();
+					myMove.cancel();
+				}
+				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:5px;', duration:.1});
+				var myMove = new Effect.Opacity('scrollbar_track', {to:.35, duration:.2});
 			}
 		}
 		function hideScrollbar() {
-			// CAN WE AND SHOULD WE?
-			if (scrollbar.enabled && $('scrollbar_track').style.right != '-8px') {
-				new Effect.Morph('scrollbar_track', {style:'right:-8px;', duration:.5});
-				new Effect.Opacity('scrollbar_track', {to:0.1, duration:.4});
+			// CAN WE?
+			if (scrollbar.enabled) {
+				if (myOpac) {
+					myOpac.cancel();
+					myMove.cancel();
+				}
+				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:-8px;', duration:.5});
+				var myMove = new Effect.Opacity('scrollbar_track', {to:0.1, duration:.4});
 			}
 		}
 		
