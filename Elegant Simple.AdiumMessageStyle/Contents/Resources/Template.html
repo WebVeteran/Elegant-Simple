@@ -38,6 +38,8 @@
 	// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	============================================================================== */
 	
+	// client.debugLog('hint');
+	
 		var scrollbar;
 		Event.observe(window,'load', function(){
 			// GIVE A PAUSE THEN BUILD THE SCROLLER
@@ -173,7 +175,7 @@
 			left: 0;
 			background-color: black;
 			opacity: .35;
-			z-index: -1;
+			z-index: 1;
 			margin: 0px;
 			padding: 0px;
 			-webkit-border-radius: 0px;
@@ -189,6 +191,7 @@
 			height: 100%
 			padding: 0px;
 			margin: 0px;
+			z-index: 2;
 		} 
 		 
 		#scrollbar_track {  
@@ -203,7 +206,7 @@
 			border: 1px solid black;
 		    margin: 0px;
 			padding: 0px;
-			z-index:2;
+			z-index:3;
 			-webkit-border-radius: 4px;
 		} 
 				 

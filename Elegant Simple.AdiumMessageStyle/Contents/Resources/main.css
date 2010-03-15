@@ -94,6 +94,7 @@ span.time {
 }
 
 span.timeC, div.status span.time {
+	clear: both;
 	display: block;
 	float: right;
 	padding-top: 6px;
