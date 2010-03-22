@@ -4,22 +4,31 @@
 <dict>
 	<key>AllowTextColors</key>
 	<false/>
+	
 	<key>CFBundleGetInfoString</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
+	
 	<key>CFBundleIdentifier</key>
 	<string>elegantsimple.style</string>
+	
 	<key>CFBundleName</key>
 	<string>Elegant Simple</string>
+	
 	<key>DefaultBackgroundIsTransparent</key>
 	<true/>
+	
 	<key>DefaultFontFamily</key>
 	<string>Arial</string>
+	
 	<key>DefaultFontSize</key>
 	<integer>10</integer>
+	
 	<key>DefaultVariant</key>
 	<string>Default</string>
+	
 	<key>ShowsUserIcons</key>
 	<false/>
+	
 	<key>MessageViewVersion</key>
 	<integer>1</integer>
 </dict>
