@@ -69,9 +69,11 @@
 				if (myOpac) {
 					myOpac.cancel();
 					myMove.cancel();
+					myMarg.cancel();
 				}
 				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:5px;', duration:.1});
 				var myMove = new Effect.Opacity('scrollbar_track', {to:.35, duration:.2});
+				var myMarg = new Effect.Morph('scrollbar_content', {style:'margin-right: 20px;', duration:.1});
 			}
 		}
 		function hideScrollbar() {
@@ -80,9 +82,11 @@
 				if (myOpac) {
 					myOpac.cancel();
 					myMove.cancel();
+					myMarg.cancel();
 				}
 				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:-8px;', duration:.5});
 				var myMove = new Effect.Opacity('scrollbar_track', {to:0.1, duration:.4});
+				var myMarg = new Effect.Morph('scrollbar_content', {style:'margin-right: 5px;', duration:.5});
 			}
 		}
 		
@@ -240,7 +244,7 @@
 		 
 		#scrollbar_content {  
 			overflow:hidden;
-			padding:0px 25px 0px 0;
+			/* padding:0px 25px 0px 0; */
 			z-index:1;
 			position: fixed;  
 			top: 0px;
