@@ -42,8 +42,6 @@
 	
 		var scrollbar;
 		var tempH = 0;
-		var busy = 0;
-		
 		Event.observe(window,'load', function(){
 			// BUILD THE SCROLLER
 			scrollbar = new Control.ScrollBar('scrollbar_content','scrollbar_track');
@@ -86,6 +84,7 @@
 			}
 		}
 		
+		var busy = 0;
 		function reScroll() {		
 			
 			// SHOULD WE BE HERE?
@@ -101,11 +100,17 @@
 				if (!scrollbar.enabled && scrollbar.container.scrollHeight > scrollbar.container.offsetHeight) {
 					scrollbar.enable();
 				}
-				scrollBottom();				
+				
+				// GIVE A PAUSE THEN RECALC THE SCROLLER
+				setTimeout("scrollbar.recalculateLayout();",100);
+								
+				// ANOTHER PAUSE, THEN SCROLL TO BOTTOM
+				setTimeout("scrollBottom();", 200);
 			}
 		}
 		
 		function scrollBottom(doThis) {		
+			// client.debugLog('tempH='+tempH);
 			// FIX A BUG IN SCROLLING TO BOTTOM WHEN SCROLLBAR IS ALREADY AT THE BOTTOM
 			// TELL IT TO SCROLL BACKWARDS, TO WHERE THE CONTENT CURRENTLY IS (?!)
 			scrollbar.scrollBy(tempH-scrollbar.container.scrollHeight);
