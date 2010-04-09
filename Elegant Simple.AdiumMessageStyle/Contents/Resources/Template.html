@@ -41,11 +41,12 @@
 	// client.debugLog('hint');
 	
 		var scrollbar;
+		var tempH = 0;
+		var busy = 0;
+		
 		Event.observe(window,'load', function(){
-			// GIVE A PAUSE THEN BUILD THE SCROLLER
-			setTimeout("scrollbar = new Control.ScrollBar('scrollbar_content','scrollbar_track');", 100);
-			// FOR THE PREVIEW
-			setTimeout("scrollBottom('hideScrollbar()');", 200);
+			// BUILD THE SCROLLER
+			scrollbar = new Control.ScrollBar('scrollbar_content','scrollbar_track');
 			
 			// AUTOHIDE SCROLLBAR
 			Event.observe(window, 'mouseover',function(e){ 
@@ -85,8 +86,6 @@
 			}
 		}
 		
-		var busy = 0;
-		var tempH = 0;
 		function reScroll() {		
 			
 			// SHOULD WE BE HERE?
@@ -102,19 +101,11 @@
 				if (!scrollbar.enabled && scrollbar.container.scrollHeight > scrollbar.container.offsetHeight) {
 					scrollbar.enable();
 				}
-				
-				// FIND OUT WHERE WE ARE SCROLLED (PRE RECALC)
-				tempH = scrollbar.container.scrollHeight;
-				
-				// GIVE A PAUSE THEN RECALC THE SCROLLER
-				setTimeout("scrollbar.recalculateLayout();",100);
-								
-				// ANOTHER PAUSE, THEN SCROLL TO BOTTOM
-				setTimeout("scrollBottom();", 200);
+				scrollBottom();				
 			}
 		}
 		
-		function scrollBottom(doThis) {			
+		function scrollBottom(doThis) {		
 			// FIX A BUG IN SCROLLING TO BOTTOM WHEN SCROLLBAR IS ALREADY AT THE BOTTOM
 			// TELL IT TO SCROLL BACKWARDS, TO WHERE THE CONTENT CURRENTLY IS (?!)
 			scrollbar.scrollBy(tempH-scrollbar.container.scrollHeight);
@@ -132,6 +123,11 @@
 		
 		//Appending new content to the message view
 		function appendMessage(html) {
+			// FIND OUT WHERE WE ARE SCROLLED (PRE RECALC)
+			if (scrollbar) {
+				tempH = scrollbar.container.scrollHeight;			
+			}
+			
 			//Remove any existing insertion point
 			var insert = document.getElementById("insert");
 			if(insert) insert.parentNode.removeChild(insert);
@@ -151,6 +147,11 @@
 		}
 
 		function appendNextMessage(html){
+			// FIND OUT WHERE WE ARE SCROLLED (PRE RECALC)
+			if (scrollbar) {
+				tempH = scrollbar.container.scrollHeight;			
+			}
+			
 			//Locate the insertion point
 			var insert = document.getElementById("insert");		
 			//make new node
