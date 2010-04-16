@@ -8,12 +8,14 @@ See /media folder for screen shots and video.
 
 == Features
 
-* Fade-in of messages
-* Auto smooth scrolling when new message is received
+* Fade-in of new messages
+* Auto smooth scrolling when new messages are received - including concurrent messages
 * Custom styled scrollbar
 * Dynamic height scrollbar handle
 * Header and Footer objects of scrollbar handle
 * Auto-hiding and fading scrollbar (mouse in/out of window)
+* Message blocks widths expand/contract with auto-hiding scrollbar
+* Auto-darkening background (mouse in/out of window) for busy desktops
 * Mouse wheel support
 
 == Credits

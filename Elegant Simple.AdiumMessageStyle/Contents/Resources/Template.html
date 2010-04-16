@@ -11,8 +11,12 @@
 	<script language="Javascript" src="lib/scrollbar.js"></script>
 	<script language="Javascript">
 	
+	// NEXT:
+	// start the message width as full
+	// except for preview.
+	
 	/* ===============================================================================
-	// ELEGANT SIMPLE 1.1
+	// ELEGANT SIMPLE 1.2
 	//
 	// Copyright (c) 2009 Jules Gravinese (http://www.webveteran.com/)
 	//
@@ -47,7 +51,7 @@
 		Event.observe(window,'load', function(){
 			// BUILD THE SCROLLER
 			scrollbar = new Control.ScrollBar('scrollbar_content','scrollbar_track');
-			
+		
 			// AUTOHIDE SCROLLBAR
 			Event.observe(window, 'mouseover',function(e){ 
 				// ONLY IF WITHIN WINDOW
@@ -62,36 +66,63 @@
 				}
 			});
 		});
-		
+
 		function showScrollbar() {
+			if (myBGop) {
+				myBGop.cancel();
+			}
+			var myBGop = new Effect.Morph('filler', {style:'opacity: 0.75;', duration:.1});
+			
 			// CAN WE?
 			if (scrollbar.enabled) {
 				if (myOpac) {
 					myOpac.cancel();
-					myMove.cancel();
+					//myMove.cancel();
 					myMarg.cancel();
 				}
-				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:5px;', duration:.1});
-				var myMove = new Effect.Opacity('scrollbar_track', {to:.35, duration:.2});
-				var myMarg = new Effect.Morph('scrollbar_content', {style:'margin-right: 20px;', duration:.1});
+				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:5px; opacity:.99', duration:.1});
+				//var myMove = new Effect.Opacity('scrollbar_track', {to:.99, duration:.2});
+				var myMarg = new Effect.Morph('scrollbar_content', {style:'margin-right: 20px;', duration:.1});	
+				$$('.message').each(function(m){
+					new Effect.Morph(m, {style:'padding-right: 0px;', duration:.1});
+				});
+				$$('.statusMsg').each(function(m){
+					new Effect.Morph(m, {style:'padding-right: 0px;', duration:.1});
+				});
+
 			}
 		}
 		function hideScrollbar() {
+			if (myBGop) {
+				myBGop.cancel();
+			}
+			var myBGop = new Effect.Morph('filler', {style:'opacity: 0.35;', duration:.5});
+			
 			// CAN WE?
 			if (scrollbar.enabled) {
 				if (myOpac) {
 					myOpac.cancel();
-					myMove.cancel();
+					//myMove.cancel();
 					myMarg.cancel();
 				}
-				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:-8px;', duration:.5});
-				var myMove = new Effect.Opacity('scrollbar_track', {to:0.1, duration:.4});
+				var myOpac = new Effect.Morph('scrollbar_track', {style:'right:-8px; opacity:0.1', duration:.5});
+				//var myMove = new Effect.Opacity('scrollbar_track', {to:0.1, duration:.4});
 				var myMarg = new Effect.Morph('scrollbar_content', {style:'margin-right: 5px;', duration:.5});
+				$$('.message').each(function(m){
+					new Effect.Morph(m, {style:'padding-right: 15px;', duration:.5});
+				});
+				$$('.statusMsg').each(function(m){
+					new Effect.Morph(m, {style:'padding-right: 15px;', duration:.5});
+				});
 			}
 		}
 		
 		function reScroll() {		
 			
+			// GIVE A PAUSE THEN RECALC THE SCROLLER
+			scrollbar.enable();
+			scrollbar.recalculateLayout();
+								
 			// SHOULD WE BE HERE?
 			if (!scrollbar.enabled && scrollbar.container.scrollHeight <= scrollbar.container.offsetHeight) {
 				return false;
@@ -102,24 +133,20 @@
 				busy = 1;
 				
 				// FIX FIRST SCROLLABLE MESSAGE NOT SCROLLING
-				if (!scrollbar.enabled && scrollbar.container.scrollHeight > scrollbar.container.offsetHeight) {
-					scrollbar.enable();
-				}
+				//if (!scrollbar.enabled && scrollbar.container.scrollHeight > scrollbar.container.offsetHeight) {
+				//	scrollbar.enable();
+				//}
 				
 				// FIX A BUG IN SCROLLING TO BOTTOM WHEN SCROLLBAR IS ALREADY AT THE BOTTOM
 				// TELL IT TO SCROLL BACKWARDS, TO WHERE THE CONTENT CURRENTLY IS (?!)
 				scrollbar.scrollBy(tempH-scrollbar.container.scrollHeight);
 				
-				// GIVE A PAUSE THEN RECALC THE SCROLLER
-				setTimeout("scrollbar.recalculateLayout();",100);
-								
 				// ANOTHER PAUSE, THEN SCROLL TO BOTTOM
 				setTimeout("scrollBottom();", 200);
 			}
 		}
 		
 		function scrollBottom(doThis) {		
-			// client.debugLog('tempH='+tempH);
 			
 			// ANIMATED SCROLL
 			scrollbar.scrollTo('bottom',function(){
@@ -135,9 +162,9 @@
 		//Appending new content to the message view
 		function appendMessage(html) {
 			// FIND OUT WHERE WE ARE SCROLLED (PRE RECALC)
-			if (scrollbar) {
+			//if (scrollbar) {
 				tempH = scrollbar.container.scrollHeight;			
-			}
+			//}
 			
 			//Remove any existing insertion point
 			var insert = document.getElementById("insert");
@@ -208,14 +235,14 @@
 		 
 		#scrollbar_track {  
 			background: transparent;
-			opacity: .35;
+			opacity: 0.1;
 			width:6px;    
 			cursor:pointer;
 			position: fixed;  
 			top: 5px;
-			right: 5px;
+			right: -8px;
 			bottom: 5px;
-			border: 1px solid black;
+			border: 1px solid #000000;
 		    margin: 0px;
 			padding: 0px;
 			z-index:3;
@@ -224,7 +251,7 @@
 				 
 		#scrollbar_handle {  
 			-webkit-border-radius: 4px;
-			background: black;
+			background: #000000;
 			opacity: 1;
 			cursor:pointer;
 			width:6px;  
@@ -251,9 +278,15 @@
 			left: 0px;
 			right: 0px;
 			bottom: 0px;
-		    margin: 0px 20px 0px 5px;
+		    margin: 0px 5px 0px 5px;
 			padding: 0px 0px 5px;
-		} 		
+		}
+		div.message {
+			padding: 0px 15px 0px 0px;
+		}
+		div.statusMsg {
+			padding: 0px 15px 0px 0px;
+		}
 	</style>
 </head>
 <body style="==bodyBackground==" id="body">

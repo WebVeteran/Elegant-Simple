@@ -118,7 +118,7 @@ span.sender {
 div.message {
 	-webkit-box-shadow: none;
 	background-image: none;
-	padding: 0;
+	padding: 0px 15px 0px 0px;
 	margin-top: 4px;
 	font-family: 'Gill Sans';
 	font-weight: 100;
