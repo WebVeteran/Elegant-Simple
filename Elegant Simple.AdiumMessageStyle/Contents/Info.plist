@@ -6,7 +6,7 @@
 	<false/>
 	
 	<key>CFBundleGetInfoString</key>
-	<string>1.2</string>
+	<string>1.2.1</string>
 	
 	<key>CFBundleIdentifier</key>
 	<string>elegantsimple.style</string>
@@ -18,10 +18,10 @@
 	<true/>
 	
 	<key>DefaultFontFamily</key>
-	<string>Arial</string>
+	<string>Gill Sans</string>
 	
 	<key>DefaultFontSize</key>
-	<integer>10</integer>
+	<integer>13</integer>
 	
 	<key>DefaultVariant</key>
 	<string>Default</string>
