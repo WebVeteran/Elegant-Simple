@@ -40,7 +40,7 @@ div.incoming, div.outgoing, div.status {
 	margin: 1px;
 	padding: 5px;
 	position: relative;
-	opacity:0;
+	opacity : .1;
 }
 
 div.incoming, div.outgoing, div.status {
@@ -180,5 +180,5 @@ div.history span.timeC {
 }
 
 #insert {
-	display: none;
+	opacity: .1;
 }
