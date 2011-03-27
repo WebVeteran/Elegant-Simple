@@ -1,184 +1,1 @@
-body {
-	color: white;
-	background: transparent;
-	font-weight: 100;
-	margin: 10px 4px;
-}
-
-html, body {
-	border:0 none;
-	height:100%;
-	margin:0;
-	max-height:100%;
-	max-width:100%;
-	overflow:hidden;
-	padding:0;
-	width:100%;
-}
-		
-a {
-	color: inherit;
-}
-
-a:visited:before {
-	content: "✓";
-	font-size: 10px;
-	margin-right: 2px;
-}
-
-a img {
-	border: 0;
-}
-
-div {
-	margin: 0px;
-	padding: 0px;
-}
-
-div.incoming, div.outgoing, div.status {
-	-webkit-border-radius: 5px;
-	margin: 1px;
-	padding: 5px;
-	position: relative;
-	opacity : .1;
-}
-
-div.incoming, div.outgoing, div.status {
-	margin-top: 10px;
-}
-
-div.incoming {
-	background-color: rgba(0,0,0, 0.4);
-}
-
-div.outgoing {
-	background-color:  rgba(0,0,0, 0.2);
-}
-
-div.status {
-	-webkit-border-radius: 5px;
-	background-color: rgba(255,204,102, 0.4);
-}
-
-div.status.online, div.status.return_away {
-	background-color: rgba(204,255,102, 0.4);
-}
-
-div.status.away, div.status.away_message {
-	background-color: rgba(0,0,0, 0.2);
-}
-
-div.status.offline {
-	background-color: rgba(0,0,0, 0.75)
-}
-
-div.status.error {
-	background-color: rgba(255, 0, 0, 0.4);
-}
-
-div.status.date_separator {
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
-span.time {
-	display: block;
-	position: absolute;
-	top: 4px;
-	right: 4px;
-	font-size: 18px;
-	font-family: Helvetica Neue;
-	font-weight: 100;
-	color: rgba(255, 255, 255, 0.7);
-}
-
-span.timeC, div.status span.time {
-	clear: both;
-	display: block;
-	float: right;
-	padding-top: 6px;
-	font-size: 10px;
-	font-family: Helvetica Neue;
-	font-weight: 100;
-	color: rgba(255, 255, 255, 0.5);
-}
-
-div.status span.time {
-	padding-top: 4px;
-	color: rgba(255, 255, 255, 1);
-}
-
-div.status img {
-	height: 1em;
-}
-
-span.sender {
-	font-size: 18px;
-	font-family: Helvetica Neue;
-	font-weight: 100;
-}
-
-div.message {
-	-webkit-box-shadow: none;
-	background-image: none;
-	padding: 0px 15px 0px 0px;
-	margin-top: 4px;
-	font-weight: 100;
-	color: rgba(255,255,255, 0.8);
-	text-align: justify;
-}
-
-div.consecutive {
-	margin-right: 34px;	
-}
-
-button {
-	-webkit-border-radius: 5px;
-	margin: 0 10px;
-	padding: 1px 7px;
-	border: 1px solid rgba(0,0,0, 0.4);
-	background-color: rgba(0,0,0, 0.4);
-	color: white;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0, 0.1)), to(rgba(0,0,0, 0.4)));
-	vertical-align: bottom;
-}
-
-button:active {
-		background-image: -webkit-gradient(linear, left top, left bottom, to(rgba(0,0,0, 0.0)), from(rgba(0,0,0, 0.4)));
-}
-
-img {
-	border: 0;
-	margin: 0 5px;
-}
-
-img.scaledToFitImage {
-	width: auto;
-}
-
-div.history div.incoming {
-	background-color: rgba(0,0,0, 0.2);
-}
-
-div.history div.outgoing {
-	background-color: rgba(0,0,0, 0.1);
-}
-
-div.history {
-	color: rgba(255,255,255, 0.6);
-}
-
-div.history div.message {
-	color: rgba(255,255,255, 0.6);
-}
-
-div.history span.time {
-	color: rgba(255,255,255, 0.5);
-}
-
-div.history span.timeC {
-	color: rgba(255,255,255, 0.2);
-}
-
-#insert {
-	opacity: .1;
-}
+body {	color: white;	background: transparent;	font-weight: 100;	margin: 10px 4px;}html, body {	border:0 none;	height:100%;	margin:0;	max-height:100%;	max-width:100%;	overflow:hidden;	padding:0;	width:100%;}		a {	color: inherit;}a:visited:before {	content: "✓";	font-size: 10px;	margin-right: 2px;}a img {	border: 0;}div {	margin: 0px;	padding: 0px;}div.incoming, div.outgoing, div.status {	-webkit-border-radius: 5px;	margin: 1px;	padding: 5px;	position: relative;	opacity : .1;}div.incoming, div.outgoing, div.status {	margin-top: 10px;}div.incoming {	background-color: rgba(0,0,0, 0.4);}div.outgoing {	background-color:  rgba(0,0,0, 0.2);}div.status {	-webkit-border-radius: 5px;	background-color: rgba(255,204,102, 0.4);}div.status.online, div.status.return_away {	background-color: rgba(204,255,102, 0.4);}div.status.away, div.status.away_message {	background-color: rgba(0,0,0, 0.2);}div.status.offline {	background-color: rgba(0,0,0, 0.75)}div.status.error {	background-color: rgba(255, 0, 0, 0.4);}div.status.date_separator {	background-color: rgba(0, 0, 0, 0.6);}span.time {	display: block;	position: absolute;	top: 4px;	right: 4px;	font-size: 18px;	font-family: Helvetica Neue;	font-weight: 100;	color: rgba(255, 255, 255, 0.7);}span.timeC, div.status span.time {	clear: both;	display: block;	float: right;	padding-top: 6px;	font-size: 10px;	font-family: Helvetica Neue;	font-weight: 100;	color: rgba(255, 255, 255, 0.5);}div.status span.time {	padding-top: 4px;	color: rgba(255, 255, 255, 1);}div.status img {	height: 1em;}span.sender {	font-size: 18px;	font-family: Helvetica Neue;	font-weight: 100;}div.message {	-webkit-box-shadow: none;	background-image: none;	padding: 0px 15px 0px 0px;	margin-top: 4px;	font-weight: 100;	color: rgba(255,255,255, 0.8);	text-align: justify;}div.consecutive {	margin-right: 34px;	}button {	-webkit-border-radius: 5px;	margin: 0 10px;	padding: 1px 7px;	border: 1px solid rgba(0,0,0, 0.4);	background-color: rgba(0,0,0, 0.4);	color: white;	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0, 0.1)), to(rgba(0,0,0, 0.4)));	vertical-align: bottom;}button:active {		background-image: -webkit-gradient(linear, left top, left bottom, to(rgba(0,0,0, 0.0)), from(rgba(0,0,0, 0.4)));}img {	border: 0;	margin: 0 5px;}img.scaledToFitImage {	width: auto;}div.history div.incoming {	background-color: rgba(0,0,0, 0.2);}div.history div.outgoing {	background-color: rgba(0,0,0, 0.1);}div.history {	color: rgba(255,255,255, 0.6);}div.history div.message {	color: rgba(255,255,255, 0.6);}div.history span.time {	color: rgba(255,255,255, 0.5);}div.history span.timeC {	color: rgba(255,255,255, 0.2);}#insert {	opacity: .1;}
