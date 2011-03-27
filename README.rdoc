@@ -23,7 +23,6 @@ See /media folder for screen shots and video.
 * Design taken from "Pretty Simple" Message Style by Piotrek Marciniak
 * Message-Append code taken from "ProtoScroll" Message Style by Eoban Binder
 * Sam Stephenson and contributors of Prototype
-* Ryan Johnson and contributors of LivePipe UI
 * Thomas Fuchs and contributors of scriptaculous
 
 == License
